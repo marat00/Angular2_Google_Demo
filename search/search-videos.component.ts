@@ -43,8 +43,21 @@ export class SearchVideosComponent {
     }
   }
 
-  // TODO(M2): Implement a fetch() method that returns the FAKE_RESULTS using
-  //           this.videoList.
+  /*
+   * Fetch the list of videos from our YoutubeService.
+   * @returns A promise that will resolve to the list of videos that match 
+   *   our query.
+   */
+  
+  fetch(): Promise {
+	  if (this.searchTerm != 'cats') {
+		  window.alert('You wanted ${this.searchTerm}, but we only have cats.  ' +
+		               'Sorry!');
+	  }
+	  return FAKE_RESULTS;
+  }
+  
+  
   // TODO(M3): Update the fetch() method to use the results form YoutubeService.
   //           You should also change the type declaration.
 }
