@@ -29,8 +29,7 @@ export class SearchVideosComponent {
   /* A query list containing all result cards. */
   // TODO(M9): Get ahold of all search result card components.
 
-  // TODO(M3): Inject the YoutubeService in the constructor.
-  constructor() {}
+  constructor(private youtubeService: YoutubeService) {}
 
   /**
    * Enforce that only one video is playing at a time.
@@ -48,16 +47,13 @@ export class SearchVideosComponent {
    * @returns A promise that will resolve to the list of videos that match 
    *   our query.
    */
-  
   fetch(): Promise {
-	  if (this.searchTerm != 'cats') {
-		  window.alert('You wanted ${this.searchTerm}, but we only have cats.  ' +
-		               'Sorry!');
-	  }
-	  return FAKE_RESULTS;
+    if (this.searchTerm != 'cats') {
+      window.alert(`You wanted ${this.searchTerm}, but we only have cats. ` +
+                   `Sorry!`);
+    }
+    return this.youtubeService.getVideos().then((response: any) => {
+      this.videoList = response;
+    });
   }
-  
-  
-  // TODO(M3): Update the fetch() method to use the results form YoutubeService.
-  //           You should also change the type declaration.
 }

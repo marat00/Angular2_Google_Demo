@@ -3,8 +3,8 @@
   <h1>Search</h1>
   
   <!-- Accept text input for the search term. -->
-  <input name="searchTerm" [(ngModel)]="searchTerm"></input>
-  <!-- TODO(M2): Create a search button that calls the fetch method on the
+  <md-input name="searchTerm" [(ngModel)]="searchTerm"></md-input>
+  <!--  Create a search button that calls the fetch method on the
                  component instance. -->
   <button type="button" (click)="fetch()">FETCH</button>
 </section>
@@ -12,15 +12,10 @@
 <!-- Search results -->
 <div *ngIf="videoList">
   <!-- Show the total number of search results. -->
-  <h2>Showing {{FAKE_RESULTS.length}} results</h2>
+  <h2>Showing {{videoList.length}} results</h2>
   <!-- Show the description for each search result. -->
-  <ul>
-    <li *ngFor="let item of FAKE_RESULTS">
-	  {{item.description}}
-	</li>
-  </ul>
-
-  <!-- TODO(M4): Render a search-result-card for each video. Use ng-repeat and
-                 property binding. Use this instead of rendering the description
-                 for each search result from Milestone 2. -->
+  <search-result-card *ngFor="let item of videoList" 
+                      [video]="item" 
+                      (stateChange)="playOneCard($event)>
+  </search-result-card>
 </div>
